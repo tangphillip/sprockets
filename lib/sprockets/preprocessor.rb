@@ -13,6 +13,7 @@ module Sprockets
     def require(source_file)
       return if source_files.include?(source_file)
       source_files << source_file
+      source_file.interpolate_constants = interpolate_constants?
       
       source_file.each_source_line do |source_line|
         if source_line.require?
@@ -49,6 +50,10 @@ module Sprockets
 
       def strip_comments?
         options[:strip_comments] != false
+      end
+      
+      def interpolate_constants?
+        options[:interpolate_constants] != false
       end
       
       def pathname_from(source_line)

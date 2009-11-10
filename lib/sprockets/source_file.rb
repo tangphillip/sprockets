@@ -1,10 +1,12 @@
 module Sprockets
   class SourceFile
     attr_reader :environment, :pathname
+    attr_accessor :interpolate_constants
 
     def initialize(environment, pathname)
       @environment = environment
       @pathname = pathname
+      @interpolate_constants = true
     end
 
     def source_lines

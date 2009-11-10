@@ -7,7 +7,7 @@ module Sprockets
       @line = line
       @number = number
     end
-
+    
     def comment
       @comment ||= line[/^\s*\/\/(.*)/, 1]
     end
@@ -58,12 +58,15 @@ module Sprockets
     
     def to_s(constants = source_file.environment.constants)
       result = line.chomp
-      interpolate_constants!(result, constants)
+      interpolate_constants!(result, constants) if interpolate_constants?
       strip_trailing_whitespace!(result)
       result + $/
     end
     
     protected
+      def interpolate_constants?
+        source_file.interpolate_constants != false
+      end
       def interpolate_constants!(result, constants)
         result.gsub!(/<%=(.*?)%>/) do
           constant = $1.strip
