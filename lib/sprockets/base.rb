@@ -46,6 +46,14 @@ module Sprockets
       raise NotImplementedError
     end
 
+    # Optimization hint that the same index can be used for the scope
+    # of the block.
+    #
+    # See `Environment#with_index`.
+    def with_index
+      yield
+    end
+
     # Works like `Dir.entries`.
     #
     # Subclasses may cache this method.
