@@ -75,7 +75,7 @@ module Sprockets
     #     environment["application.css"]
     #   end
     #
-    # Is equivalent to
+    # Is roughly the same as
     #
     #   index = environment.index
     #   index["application.js"]
