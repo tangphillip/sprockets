@@ -104,9 +104,9 @@ module Sprockets
       pathname = Pathname.new(path)
 
       if pathname.absolute?
-        build_asset(attributes_for(pathname).logical_path, pathname, options)
+        index.build_asset(attributes_for(pathname).logical_path, pathname, options)
       else
-        find_asset_in_path(pathname, options)
+        index.find_asset_in_path(pathname, options)
       end
     end
 

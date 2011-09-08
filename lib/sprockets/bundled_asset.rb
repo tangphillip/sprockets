@@ -166,7 +166,7 @@ module Sprockets
           data = Sprockets::Utils.read_unicode(pathname)
 
           # Prime digest cache with data, since we happen to have it
-          environment.file_digest(pathname, data)
+          environment.index.file_digest(pathname, data)
 
           # Runs all processors on `Context`
           body = context.evaluate(pathname, :data => data)
@@ -212,8 +212,8 @@ module Sprockets
           dependency_context._dependency_paths.each do |path|
             paths[path] ||= {
               'path'      => path,
-              'mtime'     => environment.stat(path).mtime,
-              'hexdigest' => environment.file_digest(path).hexdigest
+              'mtime'     => environment.index.stat(path).mtime,
+              'hexdigest' => environment.index.file_digest(path).hexdigest
             }
           end
 
