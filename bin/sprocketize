@@ -28,6 +28,10 @@ OptionParser.new do |opts|
     options[:asset_root] = directory
   end
   
+  opts.on("-n", "--no-constants", "Don't interpolate constants") do
+    options[:interpolate_constants] = false
+  end
+
   opts.on_tail("-h", "--help", "Shows this help message") do
     opts.show_usage
   end
